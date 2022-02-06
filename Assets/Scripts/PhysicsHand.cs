@@ -1,10 +1,12 @@
 using UnityEngine;
+using Mirror;
 
 public class PhysicsHand : MonoBehaviour
 {
     public bool freezeYOffset=false;
     [Header("PID")]
     [SerializeField] float frequency = 50f;
+    [SerializeField] NetworkIdentity NetID;
     [SerializeField] float damping = 1f;
     [SerializeField] float rotFrequency = 100f;
     [SerializeField] float rotDamping = 0.9f;
@@ -34,7 +36,7 @@ public class PhysicsHand : MonoBehaviour
     {
         if(trackPos) {PIDMovement();}
         if(trackRot) {PIDRotation();}
-        if(_isColliding) {HookesLaw();}
+        if(_isColliding&&NetID.hasAuthority) {HookesLaw();}
     }
     void PIDMovement()
     {
