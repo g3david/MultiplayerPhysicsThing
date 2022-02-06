@@ -1174,6 +1174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   freezeYOffset: 0
   frequency: 50
+  NetID: {fileID: 0}
   damping: 1
   rotFrequency: 100
   rotDamping: 0.9
@@ -1429,6 +1430,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   freezeYOffset: 0
   frequency: 50
+  NetID: {fileID: 493815584}
   damping: 1
   rotFrequency: 100
   rotDamping: 0.9
@@ -3372,6 +3374,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   freezeYOffset: 0
   frequency: 50
+  NetID: {fileID: 493815584}
   damping: 1
   rotFrequency: 100
   rotDamping: 0.9
@@ -3450,6 +3453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   freezeYOffset: 0
   frequency: 50
+  NetID: {fileID: 493815584}
   damping: 1
   rotFrequency: 100
   rotDamping: 0.99
@@ -3529,6 +3533,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   freezeYOffset: 0
   frequency: 50
+  NetID: {fileID: 493815584}
   damping: 1
   rotFrequency: 100
   rotDamping: 0.99
@@ -3606,6 +3611,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   freezeYOffset: 0
   frequency: 50
+  NetID: {fileID: 493815584}
   damping: 1
   rotFrequency: 100
   rotDamping: 0.9
