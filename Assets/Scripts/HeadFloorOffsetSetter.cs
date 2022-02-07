@@ -2,13 +2,17 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using Mirror;
 using UnityEngine.XR;
 
 public class HeadFloorOffsetSetter : MonoBehaviour
 {
     [Header("Feet")]
+    [SerializeField] private NetworkIdentity NetID;
     [SerializeField] private PhysicsHand leftFoot;
     [SerializeField] private PhysicsHand rightFoot;
+    [SerializeField] private Transform leftFootTracker;
+    [SerializeField] private Transform rightFootTracker;
     [Header("Left Hand")]
     [SerializeField] private Transform LeftHand;
     [Header("Right Hand")]
@@ -19,7 +23,8 @@ public class HeadFloorOffsetSetter : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private Transform head;
     [SerializeField] private Transform floor;
-    [SerializeField] private bool centerFeetUnderHead = true;
+    [SerializeField] private float updateInterval;
+    private float delay;
     
 
     void Start()
@@ -31,15 +36,11 @@ public class HeadFloorOffsetSetter : MonoBehaviour
             rightHand = hands.FirstOrDefault(h => h.characteristics.HasFlag(InputDeviceCharacteristics.Right));
         }
     }
-    void LateUpdate()
+    void UpdateFeetHeight()
     {
-        bool oldCFUH=centerFeetUnderHead;
-        CheckInputs();
         Vector3 _offset=new Vector3(0f,floor.position.y-head.position.y,0f); 
         float lowest=500f;
         float hOffset=0f;
-        float xC=0f;
-        float zC=0f;
         foreach(Transform hand in new List<Transform>{LeftHand,RightHand})
         {  
             float check = hand.position.y-floor.position.y;
@@ -48,27 +49,28 @@ public class HeadFloorOffsetSetter : MonoBehaviour
                 lowest=check;
                 hOffset=head.position.y-hand.position.y;
             }
-            if(centerFeetUnderHead)
-            {
-                xC+=hand.position.x;
-                zC+=hand.position.z;
-            }
         }
-        if(centerFeetUnderHead)
-        {
-            xC=xC/2;
-            zC=zC/2;
-            _offset.x-=(xC-head.position.x);
-            _offset.z-=(zC-head.position.z);
-        }
-        centerFeetUnderHead=oldCFUH;
         _offset.y+=hOffset;
         foreach(PhysicsHand foot in new List<PhysicsHand>{leftFoot,rightFoot})
         {
-            if(!foot.freezeYOffset) foot.offset.y=_offset.y;
+            if(!foot.freezeOffset) foot.offset.y=_offset.y;
             foot.offset.x=_offset.x;
             foot.offset.z=_offset.z;
         }
+    }
+    void FixedUpdate()
+    {
+        if(!NetID.hasAuthority) Destroy(this);
+        CheckInputs();
+        delay+=Time.fixedDeltaTime;
+        if(delay>updateInterval) UpdateFeetHeight();
+    }
+    private void LateUpdate()
+    {
+        leftFootTracker.transform.position=leftFoot.transform.position;
+        leftFootTracker.transform.rotation=leftFoot.transform.rotation;
+        rightFootTracker.transform.position=rightFoot.transform.position;
+        rightFootTracker.transform.rotation=rightFoot.transform.rotation;
     }
     private void CheckInputs()
     {
@@ -78,12 +80,7 @@ public class HeadFloorOffsetSetter : MonoBehaviour
         rightHand.TryGetFeatureValue(CommonUsages.primaryButton, out bool RPB);
         rightHand.TryGetFeatureValue(CommonUsages.secondaryButton, out bool RSB);
         //Set Values
-        leftFoot.freezeYOffset=LPB;
-        rightFoot.freezeYOffset=RPB;
-        if(RSB&&LSB) { centerFeetUnderHead=true; }
-        leftFoot.trackRot=!LSB;
-        //leftFoot.ignoreHookesLaw=LSB;
-        rightFoot.trackRot=!RSB;
-        //rightFoot.ignoreHookesLaw=RSB;
+        leftFoot.freezeOffset=LPB;
+        rightFoot.freezeOffset=RPB;
     }
 }

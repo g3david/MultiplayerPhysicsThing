@@ -11,7 +11,7 @@ public class MatchTransform : MonoBehaviour
         transform.position=target.position;
         transform.rotation=target.rotation;
     }
-    void LateUpdate()
+    void FixedUpdate()
     {
         if(!NetID.hasAuthority) Destroy(this);
         transform.position=target.position;

@@ -2,15 +2,16 @@ using Mirror;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class hasAuthorityToggles : NetworkBehaviour
+public class hasAuthorityToggles : MonoBehaviour
 {
     [SerializeField] private UnityEvent actionList;
     [SerializeField] private Behaviour[] destroyComponentList = new Behaviour[0];
     [SerializeField] private GameObject[] destroyGameobjectList = new GameObject[0];
     [SerializeField] private bool runOnMyStuff=false;
-    void LateUpdate()
+    void Start()
     {
-        if(hasAuthority==runOnMyStuff)
+        NetworkIdentity NetID = gameObject.GetComponent<NetworkIdentity>();
+        if(NetID.hasAuthority==runOnMyStuff)
         {
             actionList?.Invoke();
             foreach(GameObject g in destroyGameobjectList)

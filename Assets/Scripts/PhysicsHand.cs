@@ -11,10 +11,14 @@ public class PhysicsHand : MonoBehaviour
     [SerializeField] float rotFrequency = 100f;
     [SerializeField] float rotDamping = 0.9f;
     [SerializeField] private Rigidbody playerRigidbody;
-    [SerializeField] Transform target;
-    public Vector3 offset = Vector3.zero;
+    private Transform target;
+    public Vector3 offset;
+    public bool freezeOffset;
+    [SerializeField] Transform playerTarget;
+    [SerializeField] Transform otherTarget;
     public bool trackPos = true;
     public bool trackRot = true;
+    public bool isPlayer=false;
     [Space]
     [Header("Springs")]
     [SerializeField] float climbForce = 1000f;
@@ -22,10 +26,20 @@ public class PhysicsHand : MonoBehaviour
 
     Rigidbody _rigidbody;
     Vector3 _previousPosition;
-    bool _isColliding = false;
+    [SerializeField] private bool _isColliding = false;
 
     void Start()
     {
+        
+        if(NetID.hasAuthority)
+        {
+            target=playerTarget;
+            isPlayer=true;
+        }
+        else
+        {
+            target= otherTarget;
+        }
         transform.position = target.position;
         transform.rotation = target.rotation;
         _rigidbody = GetComponent<Rigidbody>();
@@ -36,7 +50,7 @@ public class PhysicsHand : MonoBehaviour
     {
         if(trackPos) {PIDMovement();}
         if(trackRot) {PIDRotation();}
-        if(_isColliding&&NetID.hasAuthority) {HookesLaw();}
+        if(_isColliding&&isPlayer) {HookesLaw();}
     }
     void PIDMovement()
     {
