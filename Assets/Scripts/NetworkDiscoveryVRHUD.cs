@@ -14,6 +14,7 @@ namespace Mirror.Discovery
         [SerializeField] private TMP_Text WelcomeMessage;  
         [SerializeField] private string userName;
         [SerializeField] private string displayName;
+		[SerializeField] private User user;
         [SerializeField] private GameObject serverButtonPrefab;
         [SerializeField] private GameObject serverContent;
         [SerializeField] private List<GameObject> serverButtons = new List<GameObject>();
@@ -23,8 +24,10 @@ namespace Mirror.Discovery
 
         public NetworkDiscovery networkDiscovery;
         private void Start()
-        {    
-		GetUserName();
+        {
+			Core.Initialize();
+			//OculusTransport.LoggedIn(Users.GetLoggedInUser().OnComplete);    
+			GetUserName();
         	FindServers();
         }
 #if UNITY_EDITOR
@@ -130,11 +133,11 @@ namespace Mirror.Discovery
 
         private void GetLoggedInUserCallback(Message msg) {
         if (!msg.IsError) {
-            User user = msg.GetUser();
+            user = msg.GetUser();
             userName = user.OculusID;
             displayName = user.DisplayName;
-            WelcomeMessage.text = $"Welcome {displayName}!";
+            WelcomeMessage.text = displayName + userName;
         }
-  }
+  		}
     }
 }

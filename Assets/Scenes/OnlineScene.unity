@@ -1449,6 +1449,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: sabre
       objectReference: {fileID: 0}
+    - target: {fileID: 1985887045076268287, guid: 7323a46c28efe426685ef11e0d0eadd1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1985887045076268287, guid: 7323a46c28efe426685ef11e0d0eadd1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1985887045076268287, guid: 7323a46c28efe426685ef11e0d0eadd1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1985887045076268287, guid: 7323a46c28efe426685ef11e0d0eadd1,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1985887045076268287, guid: 7323a46c28efe426685ef11e0d0eadd1,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6604051326721310295, guid: 7323a46c28efe426685ef11e0d0eadd1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6604051326721310295, guid: 7323a46c28efe426685ef11e0d0eadd1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8141451055889186219, guid: 7323a46c28efe426685ef11e0d0eadd1,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: dce3228e618a84c069ecad61e20c3626, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7323a46c28efe426685ef11e0d0eadd1, type: 3}
 --- !u!1 &1060959708
