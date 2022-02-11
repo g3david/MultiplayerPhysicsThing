@@ -35,6 +35,7 @@ public class HeadFloorOffsetSetter : MonoBehaviour
             leftHand = hands.FirstOrDefault(h => h.characteristics.HasFlag(InputDeviceCharacteristics.Left));
             rightHand = hands.FirstOrDefault(h => h.characteristics.HasFlag(InputDeviceCharacteristics.Right));
         }
+        UpdateFeetHeight();
     }
     void UpdateFeetHeight()
     {

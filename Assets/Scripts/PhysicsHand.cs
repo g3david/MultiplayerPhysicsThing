@@ -6,7 +6,7 @@ public class PhysicsHand : MonoBehaviour
     public bool freezeYOffset=false;
     [Header("PID")]
     [SerializeField] float frequency = 50f;
-    [SerializeField] NetworkIdentity NetID;
+    [SerializeField] NetworkIdentity NetID=null;
     [SerializeField] float damping = 1f;
     [SerializeField] float rotFrequency = 100f;
     [SerializeField] float rotDamping = 0.9f;
@@ -30,15 +30,11 @@ public class PhysicsHand : MonoBehaviour
 
     void Start()
     {
-        
-        if(NetID.hasAuthority)
+        target= otherTarget;
+	if(NetID.hasAuthority)
         {
             target=playerTarget;
             isPlayer=true;
-        }
-        else
-        {
-            target= otherTarget;
         }
         transform.position = target.position;
         transform.rotation = target.rotation;

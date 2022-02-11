@@ -4333,7 +4333,7 @@ MonoBehaviour:
   RightHand: {fileID: 8119030778669837398}
   head: {fileID: 6305536792127163845}
   floor: {fileID: 1930078639810294828}
-  updateInterval: 1
+  updateInterval: 2
 --- !u!1 &8258281631957250471
 GameObject:
   m_ObjectHideFlags: 0

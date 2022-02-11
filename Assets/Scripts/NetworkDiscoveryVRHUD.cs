@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using Oculus.Platform;
+using Oculus.Platform.Models;
 
 namespace Mirror.Discovery
 {
@@ -9,7 +11,9 @@ namespace Mirror.Discovery
     [RequireComponent(typeof(NetworkDiscovery))]
     public class NetworkDiscoveryVRHUD : MonoBehaviour
     {
-        [SerializeField] private TMP_Text WelcomeMessage;   
+        [SerializeField] private TMP_Text WelcomeMessage;  
+        [SerializeField] private string userName;
+        [SerializeField] private string displayName;
         [SerializeField] private GameObject serverButtonPrefab;
         [SerializeField] private GameObject serverContent;
         [SerializeField] private List<GameObject> serverButtons = new List<GameObject>();
@@ -19,9 +23,9 @@ namespace Mirror.Discovery
 
         public NetworkDiscovery networkDiscovery;
         private void Start()
-        {
-            //User = Platform.Users.GetLoggedInUser();
-            FindServers();
+        {    
+		GetUserName();
+        	FindServers();
         }
 #if UNITY_EDITOR
         void OnValidate()
@@ -120,5 +124,17 @@ namespace Mirror.Discovery
             discoveredServers[info.serverId] = info;
             UpdateServerUI();
         }
+        private void GetUserName() {
+            Oculus.Platform.Users.GetLoggedInUser().OnComplete(GetLoggedInUserCallback);
+        }
+
+        private void GetLoggedInUserCallback(Message msg) {
+        if (!msg.IsError) {
+            User user = msg.GetUser();
+            userName = user.OculusID;
+            displayName = user.DisplayName;
+            WelcomeMessage.text = $"Welcome {displayName}!";
+        }
+  }
     }
 }
