@@ -4,7 +4,7 @@ public class uniFootTransform : MonoBehaviour
 {
     [SerializeField] Transform roof;
     [SerializeField] Transform head;
-    [SerializeField] PhysicsHand foot;
+    //[SerializeField] PhysicsHand foot;
     void LateUpdate()
     {
         

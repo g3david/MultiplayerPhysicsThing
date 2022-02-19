@@ -11,10 +11,10 @@ public class hasAuthorityToggles : MonoBehaviour
     void Start()
     {
         NetworkIdentity NetID = gameObject.GetComponent<NetworkIdentity>();
-        if(NetID.hasAuthority==runOnMyStuff)
+        if (NetID.hasAuthority == runOnMyStuff)
         {
             actionList?.Invoke();
-            foreach(GameObject g in destroyGameobjectList)
+            foreach (GameObject g in destroyGameobjectList)
             {
                 foreach (Transform child in g.transform)
                 {
@@ -22,9 +22,9 @@ public class hasAuthorityToggles : MonoBehaviour
                 }
                 g.SetActive(false);
             }
-            foreach(Behaviour c in destroyComponentList)
+            foreach (Behaviour c in destroyComponentList)
             {
-                c.enabled=false;
+                c.enabled = false;
             }
         }
         Destroy(this);
