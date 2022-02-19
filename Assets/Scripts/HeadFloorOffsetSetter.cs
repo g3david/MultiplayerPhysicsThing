@@ -22,7 +22,7 @@ public class HeadFloorOffsetSetter : MonoBehaviour
             rightHand = hands.FirstOrDefault(h => h.characteristics.HasFlag(InputDeviceCharacteristics.Right));
         }
     }
-    
+
     void FixedUpdate()
     {
         if (!NetID.hasAuthority) Destroy(this);

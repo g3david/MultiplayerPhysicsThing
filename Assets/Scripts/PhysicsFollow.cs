@@ -56,24 +56,24 @@ public class PhysicsFollow : MonoBehaviour
     void PIDMovement()
     {
         float dT = Time.fixedDeltaTime;
-        float kp = (6f * frequency) * (6f *frequency) * 0.25f;
+        float kp = (6f * frequency) * (6f * frequency) * 0.25f;
         float kd = 4.5f * frequency * damping;
-        float g = 1/(1+kd * dT + kp * dT * dT);
+        float g = 1 / (1 + kd * dT + kp * dT * dT);
         float ksg = kp * g;
         float kdg = (kd + kp * dT) * g;
         Vector3 force = ((targetPos) - transform.position) * ksg + (playerRigidbody.velocity - _rigidbody.velocity) * kdg;
-        _rigidbody.AddForce(force,ForceMode.Acceleration);
+        _rigidbody.AddForce(force);
     }
     void PIDRotation()
     {
         float dT = Time.fixedDeltaTime;
         float kp = (6f * rotFrequency) * (6f * rotFrequency) * 0.25f;
         float kd = 4.5f * rotFrequency * rotDamping;
-        float g = 1 / (1 + kd * dT +kp * dT * dT);
+        float g = 1 / (1 + kd * dT + kp * dT * dT);
         float ksg = kp * g;
-        float kdg = (kd +kp * dT) * g;
+        float kdg = (kd + kp * dT) * g;
         Quaternion q = targetRot * Quaternion.Inverse(transform.rotation);
-        if(q.w < 0)
+        if (q.w < 0)
         {
             q.x = -q.x;
             q.y = -q.y;
@@ -84,15 +84,15 @@ public class PhysicsFollow : MonoBehaviour
         axis.Normalize();
         axis *= Mathf.Deg2Rad;
         Vector3 torque = ksg * axis * angle + -_rigidbody.angularVelocity * kdg;
-        _rigidbody.AddTorque(torque,ForceMode.Acceleration);
+        _rigidbody.AddTorque(torque);
     }
     void HookesLaw()
     {
         Vector3 displacementFromResting = transform.position - (targetPos);
         Vector3 force = displacementFromResting * climbForce;
         float drag = GetDrag();
-        playerRigidbody.AddForce(force,ForceMode.Acceleration);
-        playerRigidbody.AddForce(drag * -playerRigidbody.velocity * climbDrag, ForceMode.Acceleration);
+        playerRigidbody.AddForce(force, ForceMode.Acceleration);
+        playerRigidbody.AddForce(drag * -playerRigidbody.velocity * climbDrag);
     }
 
     float GetDrag()
@@ -104,12 +104,22 @@ public class PhysicsFollow : MonoBehaviour
     }
     void OnCollisionEnter(Collision cEvent)
     {
-        if(transform.parent == cEvent.collider.transform.parent) { return; }
+        if (cEvent.body == null)
+        {
+            _isColliding = true;
+            return;
+        }
+        if (_rigidbody.transform.parent == cEvent.rigidbody.transform.parent) return;
         _isColliding = true;
     }
     void OnCollisionExit(Collision cEvent)
     {
-        if(transform.parent.parent == cEvent.collider.transform.parent.parent) { return; }
-        _isColliding = false; 
+        if (cEvent.body == null)
+        {
+            _isColliding = false;
+            return;
+        }
+        if (_rigidbody.transform.parent == cEvent.rigidbody.transform.parent) return;
+        _isColliding = false;
     }
 }

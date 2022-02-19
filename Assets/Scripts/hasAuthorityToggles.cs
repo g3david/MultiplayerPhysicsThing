@@ -7,7 +7,7 @@ public class hasAuthorityToggles : MonoBehaviour
     [SerializeField] private UnityEvent actionList;
     [SerializeField] private Behaviour[] destroyComponentList = new Behaviour[0];
     [SerializeField] private GameObject[] destroyGameobjectList = new GameObject[0];
-    [SerializeField] private bool runOnMyStuff=false;
+    [SerializeField] private bool runOnMyStuff = false;
     void Start()
     {
         NetworkIdentity NetID = gameObject.GetComponent<NetworkIdentity>();

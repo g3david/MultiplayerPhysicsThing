@@ -5,12 +5,12 @@ using UnityEngine;
 public class CurrentTime : MonoBehaviour
 {
     [SerializeField] private TMP_Text Clock;
-    [SerializeField] private String ZuluTimeFormat="HHmmZ";
-    [SerializeField] private String LocalTimeFormat="HHmmL";
-    [SerializeField] private bool local=false;
+    [SerializeField] private String ZuluTimeFormat = "HHmmZ";
+    [SerializeField] private String LocalTimeFormat = "HHmmL";
+    [SerializeField] private bool local = false;
     void LateUpdate()
     {
-        if(local)
+        if (local)
         {
             Clock.text = DateTime.Now.ToString(LocalTimeFormat);
         }

@@ -7,6 +7,6 @@ public class uniFootTransform : MonoBehaviour
     //[SerializeField] PhysicsHand foot;
     void LateUpdate()
     {
-        
+
     }
 }

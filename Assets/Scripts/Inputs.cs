@@ -10,8 +10,8 @@ public class Inputs : MonoBehaviour
     [SerializeField] TMP_Text leftOutputText, rightOutputText;
     public Vector2 leftStick, rightStick;
     public float rightBatLvl, leftBatLvl;
-    public bool leftPriBtn, leftSecBtn,rightPriBtn, rightSecBtn;
-    [Range(0f,1.0f)]
+    public bool leftPriBtn, leftSecBtn, rightPriBtn, rightSecBtn;
+    [Range(0f, 1.0f)]
     public float leftGrip, leftTrig, rightGrip, rightTrig;
     private List<InputDevice> hands = new List<InputDevice>();
     private InputDevice leftHand;
@@ -20,7 +20,7 @@ public class Inputs : MonoBehaviour
     {
         if (XRSettings.isDeviceActive)
         {
-            InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.HeldInHand,hands);
+            InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.HeldInHand, hands);
             leftHand = hands.FirstOrDefault(h => h.characteristics.HasFlag(InputDeviceCharacteristics.Left));
             rightHand = hands.FirstOrDefault(h => h.characteristics.HasFlag(InputDeviceCharacteristics.Right));
         }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
-public class FollowXZAxisPhysics: MonoBehaviour
+public class FollowXZAxisPhysics : MonoBehaviour
 {
     public Transform Follow;
     [SerializeField] private Rigidbody rb;
@@ -14,9 +14,9 @@ public class FollowXZAxisPhysics: MonoBehaviour
     void FixedUpdate()
     {
         Vector3 pos;
-        pos.x=Follow.position.x;
-        pos.z=Follow.position.z;
-        pos.y=transform.position.y;
+        pos.x = Follow.position.x;
+        pos.z = Follow.position.z;
+        pos.y = transform.position.y;
         rb.MovePosition(pos);
     }
 }
