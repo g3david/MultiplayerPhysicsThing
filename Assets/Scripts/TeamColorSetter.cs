@@ -8,14 +8,11 @@ public class TeamColorSetter : NetworkBehaviour
     [SerializeField] private Renderer[] colorRenderers = new Renderer[0];
     [SerializeField] VRPlayer player;
     [SyncVar(hook = nameof(HandleTeamColorUpdated))]
-    private Color teamColor = new Color();
-    private void Start()
+    [SerializeField] Color teamColor;
+    private Color _pColor;
+    public void colorUpdate()
     {
         teamColor = player.GetTeamColor();
-        applyColor();
-    }
-    private void LateUpdate()
-    {
         applyColor();
     }
     private void applyColor()

@@ -12,9 +12,11 @@ namespace Mirror.Discovery
     [RequireComponent(typeof(NetworkDiscovery))]
     public class NetworkDiscoveryVRHUD : MonoBehaviour
     {
+        [SerializeField] SaveLoad svLoad;
         [SerializeField] public Color playerColor;
         [SerializeField] Slider rColor, gColor, bColor;
         [SerializeField] private TMP_Text WelcomeMessage;
+        [SerializeField] private TMP_Text ColorValues;
         [SerializeField] private string userName;
         [SerializeField] private string displayName;
         [SerializeField] private User user;
@@ -24,21 +26,54 @@ namespace Mirror.Discovery
         [SerializeField] private TMP_Text serverCountText;
         [SerializeField] private Dictionary<long, ServerResponse> discoveredServers = new Dictionary<long, ServerResponse>();
         Vector2 scrollViewPos = Vector2.zero;
+        [SerializeField] private Renderer previewRender;
         [SerializeField] private Renderer[] colorRenderers = new Renderer[0];
         public NetworkDiscovery networkDiscovery;
+        private bool ColorSaved;
+        private Color tempColor;
+        [SerializeField] float elapsed, SaveInterval = 5;
 
-        public void applyColor()
+        public void ColorChanged()
         {
-            playerColor = new Color(rColor.value, gColor.value, bColor.value);
+            tempColor = new Color(rColor.value, gColor.value, bColor.value);
+            ColorSaved = false;
+            elapsed = 0;
+            previewRender.material.SetColor("_Color", tempColor);
+            ColorValues.text = $"R,G,B\n{tempColor.r * 255},{tempColor.g * 255},{tempColor.b * 255}";
+        }
+
+        private void applyColor()
+        {
+            playerColor = tempColor;
             foreach (Renderer renderer in colorRenderers)
             {
                 renderer.material.SetColor("_Color", playerColor);
             }
         }
+        private void LateUpdate()
+        {
+            if (!ColorSaved)
+            {
+                elapsed += Time.deltaTime;
+                if (elapsed > SaveInterval)
+                {
+                    applyColor();
+                    svLoad.saveColor(playerColor, "pColor");
+                    ColorSaved = true;
+                }
+            }
+        }
+        private void Awake()
+        {
+            playerColor = svLoad.loadColor("pColor");
+            rColor.value = playerColor.r;
+            gColor.value = playerColor.g;
+            bColor.value = playerColor.b;
+            applyColor();
+        }
         private void Start()
         {
-            applyColor();
-            Core.Initialize();
+            Core.Initialize("2958163224308458");
             Users.GetLoggedInUser();
             GetUserName();
             FindServers();

@@ -10,11 +10,13 @@ public class VRPlayer : NetworkBehaviour
     private int money = 500;
     public event Action<int> ClientOnResourcesUpdated;
     [SerializeReference] private Color teamColor = new Color();
+    [SerializeField] TeamColorSetter colorSetter;
     private void Start()
     {
         if (hasAuthority)
         {
             teamColor = GameObject.Find("NetworkStuff").GetComponent<NetworkDiscoveryVRHUD>().playerColor;
+            colorSetter.colorUpdate();
         }
     }
     public Color GetTeamColor()

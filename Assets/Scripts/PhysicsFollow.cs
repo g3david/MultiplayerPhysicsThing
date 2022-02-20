@@ -62,7 +62,7 @@ public class PhysicsFollow : MonoBehaviour
         float ksg = kp * g;
         float kdg = (kd + kp * dT) * g;
         Vector3 force = ((targetPos) - transform.position) * ksg + (playerRigidbody.velocity - _rigidbody.velocity) * kdg;
-        _rigidbody.AddForce(force);
+        _rigidbody.AddForce(force, ForceMode.Acceleration);
     }
     void PIDRotation()
     {
@@ -84,7 +84,7 @@ public class PhysicsFollow : MonoBehaviour
         axis.Normalize();
         axis *= Mathf.Deg2Rad;
         Vector3 torque = ksg * axis * angle + -_rigidbody.angularVelocity * kdg;
-        _rigidbody.AddTorque(torque);
+        _rigidbody.AddTorque(torque, ForceMode.Acceleration);
     }
     void HookesLaw()
     {
@@ -92,7 +92,7 @@ public class PhysicsFollow : MonoBehaviour
         Vector3 force = displacementFromResting * climbForce;
         float drag = GetDrag();
         playerRigidbody.AddForce(force, ForceMode.Acceleration);
-        playerRigidbody.AddForce(drag * -playerRigidbody.velocity * climbDrag);
+        playerRigidbody.AddForce(drag * -playerRigidbody.velocity * climbDrag, ForceMode.Acceleration);
     }
 
     float GetDrag()
