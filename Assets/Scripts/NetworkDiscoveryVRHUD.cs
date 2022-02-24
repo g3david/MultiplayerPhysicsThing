@@ -17,8 +17,7 @@ namespace Mirror.Discovery
         [SerializeField] Slider rColor, gColor, bColor;
         [SerializeField] private TMP_Text WelcomeMessage;
         [SerializeField] private TMP_Text ColorValues;
-        [SerializeField] private string userName;
-        [SerializeField] private string displayName;
+        [SerializeField] private string userName,userID,displayName;
         [SerializeField] private User user;
         [SerializeField] private GameObject serverButtonPrefab;
         [SerializeField] private GameObject serverContent;
@@ -65,19 +64,16 @@ namespace Mirror.Discovery
         }
         private void Awake()
         {
+            Core.Initialize();
+            Users.GetLoggedInUser().OnComplete(OnGetUser);
             playerColor = svLoad.loadColor("pColor");
             rColor.value = playerColor.r;
             gColor.value = playerColor.g;
             bColor.value = playerColor.b;
             applyColor();
-        }
-        private void Start()
-        {
-            Core.Initialize("2958163224308458");
-            Users.GetLoggedInUser();
-            GetUserName();
             FindServers();
         }
+
 #if UNITY_EDITOR
         void OnValidate()
         {
@@ -170,19 +166,20 @@ namespace Mirror.Discovery
             discoveredServers[info.serverId] = info;
             UpdateServerUI();
         }
-        private void GetUserName()
+        private void OnGetUser(Message<User> message)
         {
-            Users.GetLoggedInUser().OnComplete(GetLoggedInUserCallback);
-        }
-
-        private void GetLoggedInUserCallback(Message msg)
-        {
-            if (!msg.IsError)
+            if (message.Data != null)
             {
-                user = msg.GetUser();
-                userName = user.OculusID;
-                displayName = user.DisplayName;
-                WelcomeMessage.text = displayName + " " + userName;
+                var id = message.Data.ID;
+                Debug.Log("My id is " + id);
+
+                var ID = message.Data.ID;
+                userID = ID.ToString();
+
+                displayName = message.Data.OculusID;
+                Debug.Log("My OculusID is " + displayName);
+                WelcomeMessage.text = displayName;
+
             }
         }
     }

@@ -37,12 +37,12 @@ public class PhysFoot : PhysNetFollow
     public override void GetRotation()
     {
         base.GetRotation();
-        targetRot = _pRotation;
-        if (!NetID.hasAuthority || footPlant) return;
-        Quaternion oldRot = transform.rotation;
-        transform.LookAt(midpoint);
-        transform.Rotate(-90, 0, 0);
-        transform.rotation = oldRot;
-        targetRot = transform.rotation;
+        //targetRot = _pRotation;
+        //if (!NetID.hasAuthority || footPlant) return;
+        //Quaternion oldRot = transform.rotation;
+        //transform.LookAt(midpoint);
+        //transform.Rotate(-90, 0, 0);
+        //transform.rotation = oldRot;
+        //targetRot = transform.rotation;
     }
 }
