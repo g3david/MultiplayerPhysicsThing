@@ -883,6 +883,67 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &186175405
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 186175407}
+  - component: {fileID: 186175406}
+  m_Layer: 0
+  m_Name: LRM - Connector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &186175406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 186175405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b0fecffa3f624585964b0d0eb21b18e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Port: 7777
+  DualMode: 1
+  NoDelay: 1
+  Interval: 10
+  Timeout: 10000
+  FastResend: 2
+  CongestionWindow: 0
+  SendWindowSize: 4096
+  ReceiveWindowSize: 4096
+  MaxRetransmit: 40
+  NonAlloc: 1
+  MaximizeSendReceiveBuffersToOSLimit: 1
+  ReliableMaxMessageSize: 298449
+  UnreliableMaxMessageSize: 1199
+  debugLog: 0
+  statisticsGUI: 0
+  statisticsLog: 0
+--- !u!4 &186175407
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 186175405}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.3682623, y: -5.0293245, z: 32.88999}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 873670033}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &226466633
 GameObject:
   m_ObjectHideFlags: 0
@@ -1426,6 +1487,67 @@ RectTransform:
   m_AnchoredPosition: {x: 2.5, y: 1.5}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &482158758
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 482158759}
+  - component: {fileID: 482158760}
+  m_Layer: 0
+  m_Name: LRM - Direct Connect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &482158759
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 482158758}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.3682623, y: -5.0293245, z: 32.88999}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 873670033}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &482158760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 482158758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b0fecffa3f624585964b0d0eb21b18e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Port: 7777
+  DualMode: 1
+  NoDelay: 1
+  Interval: 10
+  Timeout: 10000
+  FastResend: 2
+  CongestionWindow: 0
+  SendWindowSize: 4096
+  ReceiveWindowSize: 4096
+  MaxRetransmit: 40
+  NonAlloc: 1
+  MaximizeSendReceiveBuffersToOSLimit: 1
+  ReliableMaxMessageSize: 298449
+  UnreliableMaxMessageSize: 1199
+  debugLog: 0
+  statisticsGUI: 0
+  statisticsLog: 0
 --- !u!1 &560184166
 GameObject:
   m_ObjectHideFlags: 0
@@ -1914,11 +2036,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 873670033}
-  - component: {fileID: 873670032}
   - component: {fileID: 873670030}
   - component: {fileID: 873670034}
   - component: {fileID: 873670036}
   - component: {fileID: 873670035}
+  - component: {fileID: 873670037}
+  - component: {fileID: 873670038}
   m_Layer: 0
   m_Name: NetworkStuff
   m_TagString: Untagged
@@ -1942,7 +2065,7 @@ MonoBehaviour:
   serverBroadcastListenPort: 47777
   enableActiveDiscovery: 1
   ActiveDiscoveryInterval: 5
-  transport: {fileID: 873670032}
+  transport: {fileID: 873670037}
   OnServerFound:
     m_PersistentCalls:
       m_Calls:
@@ -1958,35 +2081,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &873670032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 873670028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b0fecffa3f624585964b0d0eb21b18e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Port: 7777
-  DualMode: 1
-  NoDelay: 1
-  Interval: 10
-  Timeout: 10000
-  FastResend: 2
-  CongestionWindow: 0
-  SendWindowSize: 4096
-  ReceiveWindowSize: 4096
-  MaxRetransmit: 40
-  NonAlloc: 1
-  MaximizeSendReceiveBuffersToOSLimit: 1
-  ReliableMaxMessageSize: 298449
-  UnreliableMaxMessageSize: 1199
-  debugLog: 0
-  statisticsGUI: 0
-  statisticsLog: 0
 --- !u!4 &873670033
 Transform:
   m_ObjectHideFlags: 0
@@ -1998,7 +2092,9 @@ Transform:
   m_LocalPosition: {x: 6.3682623, y: 5.0293245, z: -32.88999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 186175407}
+  - {fileID: 482158759}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2022,6 +2118,7 @@ MonoBehaviour:
   WelcomeMessage: {fileID: 1390283657}
   ColorValues: {fileID: 1905685354}
   userName: 
+  userID: 
   displayName: 
   serverButtonPrefab: {fileID: 6911733215295784677, guid: b2562ba6b88504e8f88296b40a060f97,
     type: 3}
@@ -2055,7 +2152,7 @@ MonoBehaviour:
   serverTickRate: 30
   offlineScene: Assets/Scenes/OfflineScene.unity
   onlineScene: Assets/Scenes/OnlineScene.unity
-  transport: {fileID: 873670032}
+  transport: {fileID: 873670037}
   networkAddress: localhost
   maxConnections: 100
   authenticator: {fileID: 0}
@@ -2084,6 +2181,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bad638b1aa2f45fa9c8187752a61a6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &873670037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 873670028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7064b1b1d0671194baf55fa8d5f564d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clientToServerTransport: {fileID: 186175406}
+  serverIP: g3mine.mine.bz
+  serverPort: 7777
+  endpointServerPort: 8080
+  heartBeatInterval: 3
+  connectOnAwake: 1
+  authenticationKey: Secret Auth Key
+  disconnectedFromRelay:
+    m_PersistentCalls:
+      m_Calls: []
+  connectedToRelay:
+    m_PersistentCalls:
+      m_Calls: []
+  useNATPunch: 1
+  NATPunchtroughPort: 1
+  useLoadBalancer: 0
+  loadBalancerPort: 7070
+  loadBalancerAddress: 127.0.0.1
+  serverName: My awesome server!
+  extraServerData: Map 1
+  maxServerPlayers: 10
+  isPublicServer: 1
+  serverListUpdated:
+    m_PersistentCalls:
+      m_Calls: []
+  serverStatus: Not Started.
+  serverId: 
+  region: 1
+--- !u!114 &873670038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 873670028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c4cbff877abc42448dd829920c6c233, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  directConnectTransport: {fileID: 482158760}
+  showDebugLogs: 0
 --- !u!1 &937625003
 GameObject:
   m_ObjectHideFlags: 0
