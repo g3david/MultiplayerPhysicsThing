@@ -484,7 +484,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2815999394926685955}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -3.4458282, y: 4.037, z: -17.06764}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.025, y: 0.025, z: 0.025}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -528,7 +528,7 @@ MonoBehaviour:
   Clock: {fileID: 3158458571051672652}
   ZuluTimeFormat: HHmmZ
   LocalTimeFormat: HHmmL
-  local: 0
+  local: 1
 --- !u!114 &2039087489650675128
 MonoBehaviour:
   m_ObjectHideFlags: 0

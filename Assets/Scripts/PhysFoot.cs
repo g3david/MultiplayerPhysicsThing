@@ -8,7 +8,7 @@ public class PhysFoot : PhysNetFollow
     [SerializeField] Transform floor, head, hand, otherHand;
     Quaternion _pRotation;
     private Vector3 midpoint;
-    private Vector3 _offset;
+    private Vector3 _offset, _pOffset;
     private float yOffset;
     public override void Begin()
     {
@@ -21,7 +21,11 @@ public class PhysFoot : PhysNetFollow
     public override void GetPosition()
     {
         base.GetPosition();
-        if (!NetID.hasAuthority) return;
+        if (!NetID.hasAuthority)
+        {
+            return;
+        }
+
         if (!footPlant)
         {
             Transform lowY = hand;
@@ -33,16 +37,16 @@ public class PhysFoot : PhysNetFollow
             midpoint = (hand.position + otherHand.position) / 2;
         }
         targetPos = floor.position + _offset;
+        _pOffset = _offset;
     }
     public override void GetRotation()
     {
         base.GetRotation();
-        //targetRot = _pRotation;
-        //if (!NetID.hasAuthority || footPlant) return;
-        //Quaternion oldRot = transform.rotation;
-        //transform.LookAt(midpoint);
-        //transform.Rotate(-90, 0, 0);
-        //transform.rotation = oldRot;
-        //targetRot = transform.rotation;
+        if (footPlant)
+        {
+            transform.rotation = _pRotation;
+        }
+
+        _pRotation = transform.rotation;
     }
 }

@@ -70,5 +70,6 @@ namespace LightReflectiveMirror
                 _clientProxy = null;
             }
         }
+
     }
 }

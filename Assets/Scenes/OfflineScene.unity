@@ -2042,6 +2042,7 @@ GameObject:
   - component: {fileID: 873670035}
   - component: {fileID: 873670037}
   - component: {fileID: 873670038}
+  - component: {fileID: 873670039}
   m_Layer: 0
   m_Name: NetworkStuff
   m_TagString: Untagged
@@ -2153,13 +2154,13 @@ MonoBehaviour:
   offlineScene: Assets/Scenes/OfflineScene.unity
   onlineScene: Assets/Scenes/OnlineScene.unity
   transport: {fileID: 873670037}
-  networkAddress: localhost
+  networkAddress: g3mine.mine.bz
   maxConnections: 100
   authenticator: {fileID: 0}
   playerPrefab: {fileID: 1258620643212373437, guid: c72e045ca81324fc89b1904fc16e46d2,
     type: 3}
   autoCreatePlayer: 1
-  playerSpawnMethod: 0
+  playerSpawnMethod: 1
   spawnPrefabs:
   - {fileID: 2815999394926685955, guid: db1dca4a399134651b74e2edd44c0183, type: 3}
   - {fileID: 4399153388295052834, guid: cae715807e35c403d98743022ab35667, type: 3}
@@ -2169,6 +2170,7 @@ MonoBehaviour:
   - {fileID: 9118424080549958997, guid: 2a3d0b55caff346138ad63152fb5bc27, type: 3}
   - {fileID: 4842758905367353450, guid: 08b25bb1c108040d0b926cfab7476bed, type: 3}
   - {fileID: 4473760474677611389, guid: e2275b3d569fd42a8a8bd8caae788929, type: 3}
+  - {fileID: 7887499538655879779, guid: 70892052871b24bdfb4f51a27804df7b, type: 3}
 --- !u!114 &873670036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2217,7 +2219,19 @@ MonoBehaviour:
   isPublicServer: 1
   serverListUpdated:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 873670034}
+        m_TargetAssemblyTypeName: Mirror.Discovery.NetworkDiscoveryVRHUD, Assembly-CSharp
+        m_MethodName: FindServers
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   serverStatus: Not Started.
   serverId: 
   region: 1
@@ -2235,6 +2249,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   directConnectTransport: {fileID: 482158760}
   showDebugLogs: 0
+--- !u!114 &873670039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 873670028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ccec6cc900e83f41aade135fe997e45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _server: https://mt1s.www.vivox.com/api2
+  _domain: mt1s.vivox.com
+  _tokenIssuer: g3davi9351-ph30-dev
+  _tokenKey: zips392
 --- !u!1 &937625003
 GameObject:
   m_ObjectHideFlags: 0
